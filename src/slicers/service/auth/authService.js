@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+const BackendHost = process.env.REACT_APP_BACKEND_HOSTNAME || 'http://localhost:5000'; 
 export const authService = createApi({
     reducerPath: 'authService',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${BackendHost}/api/` }),
     endpoints: (builder) => ({
         createuser: builder.mutation({
             query: (newbody) => ({

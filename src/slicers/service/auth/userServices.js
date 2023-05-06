@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
+const BackendHost = process.env.REACT_APP_BACKEND_HOSTNAME || 'http://localhost:5000'; 
 export const userService = createApi({
     reducerPath: 'userService',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/user/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${BackendHost}/api/user/` }),
     tagTypes: ["Userdetail",'Profile_update'],
     refetchOnMountOrArgChange: 5,
     endpoints: (builder) => ({
