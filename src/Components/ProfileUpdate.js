@@ -42,9 +42,8 @@ function ProfileUpdate() {
         }
     }
     useEffect(() => {
-      if(updateinfo.isSuccess){
-        navigate('/profile')
-        
+      if(updateinfo.isSuccess){       
+        navigate('/profile')        
       }
     }, [updateinfo.isSuccess])
 

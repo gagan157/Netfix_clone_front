@@ -66,11 +66,13 @@ function Movieslist(props) {
                     loader={<h1>Loading....</h1>}
                     hasMore={true}
                     horizontalscroll={true} loading={true}
-                    classname={'flex flex-row overflow-y-hidden overflow-x-scroll scrollbar-hide scroll-smooth gap-3 px-5 py-4 relative group'}>
+                    classname={'flex flex-row overflow-y-hidden overflow-x-scroll scrollbar-hide scroll-smooth gap-3 px-5 py-4 relative'}>
 
                     {
-                        <div onClick={handlePrevList} className='bg-slate-300 bg-opacity-25 sticky left-0 top-0 bottom-0 m-auto flex justify-center items-center z-10 w-11 opacity-0 invisible group-hover:visible group-hover:opacity-100 hover:bg-opacity-50 hover:opacity-100 cursor-pointer group-hover:transition-all group-hover:duration-500 h-60'>
-                            <FontAwesomeIcon className='text-white text-3xl' icon={faChevronLeft} />
+                        <div onClick={handlePrevList} className='bg-slate-500 bg-opacity-60 h-60 px-1 sticky left-0 top-0 bottom-0 m-auto flex justify-center items-center z-10 w-11 cursor-pointer group'>     
+
+                            <FontAwesomeIcon className='text-white text-3xl opacity-60 group-hover:opacity-100 group-hover:transition-all group-hover:duration-500' icon={faChevronLeft} />
+                           
                         </div>
                         
                     }
@@ -95,8 +97,8 @@ function Movieslist(props) {
                     )}
                     
                     {
-                        <div onClick={handleNextList} className='bg-slate-300 bg-opacity-25 sticky -right-4 top-0 bottom-0 m-auto flex justify-center items-center opacity-0 invisible z-10 group-hover:visible group-hover:opacity-100 hover:bg-opacity-50 cursor-pointer group-hover:transition-all group-hover:duration-500 h-60'>
-                            <FontAwesomeIcon className='text-white text-3xl' icon={faChevronRight} />
+                        <div onClick={handleNextList} className='bg-slate-500 bg-opacity-80 h-60 px-1 sticky right-0 top-0 bottom-0 m-auto flex justify-center items-center z-10 w-11 cursor-pointer hover:bg-opacity-100 transition-all group'>
+                            <FontAwesomeIcon className=' text-white text-3xl opacity-60 group-hover:opacity-100 group-hover:transition-all group-hover:duration-500' icon={faChevronRight} />
                         </div>
                         
                     }

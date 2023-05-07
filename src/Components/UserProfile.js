@@ -6,11 +6,11 @@ import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
 import { useGetuserdetailsQuery } from '../slicers/service/auth/userServices'
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 
 function UserProfile() {
-    const responseinfo  = useGetuserdetailsQuery({ },{ refetchOnMountOrArgChange: true })
-
+    const responseinfo  = useGetuserdetailsQuery({ },{ refetchOnMountOrArgChange: true })   
     const navigate = useNavigate()
     const handlemanageprofile = () => {
         navigate(`/profile_update/${responseinfo.data.data.userp_id}`)        
@@ -31,7 +31,15 @@ function UserProfile() {
     //     }
 
     // }, [responseinfo])
-    // console.log(responseinfo)
+    useEffect(()=>{      
+       
+        if(responseinfo.status === 'fulfilled' && !responseinfo?.data?.data?.first_name){           
+            
+            navigate(`/profile_update/${responseinfo?.data?.data?.userp_id}`)
+        }
+      
+    },[responseinfo.status])
+  
     
     return (
         <div className='w-full h-screen bg-neutral-900 text-white overflow-hidden'>
