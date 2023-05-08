@@ -31,14 +31,14 @@ function UserProfile() {
     //     }
 
     // }, [responseinfo])
-    useEffect(()=>{      
-       
-        if(responseinfo.status === 'fulfilled' && !responseinfo?.data?.data?.first_name){           
-            
-            navigate(`/profile_update/${responseinfo?.data?.data?.userp_id}`)
+    useEffect(()=>{    
+        if(responseinfo?.data?.success){     
+            if(!responseinfo?.data?.data?.first_name){             
+                navigate(`/profile_update/${responseinfo?.data?.data?.userp_id}`)
+            }
         }
       
-    },[responseinfo.status])
+    },[responseinfo.data])
   
     
     return (

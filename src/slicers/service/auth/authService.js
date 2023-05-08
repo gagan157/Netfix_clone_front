@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const BackendHost = process.env.REACT_APP_BACKEND_HOSTNAME || 'http://localhost:5000'; 
+const BackendHost = process.env.REACT_APP_BACKEND_HOSTNAME || process.env.REACT_APP_BACKEND_LOCALHOSTNAME; 
 export const authService = createApi({
     reducerPath: 'authService',
     baseQuery: fetchBaseQuery({ baseUrl: `${BackendHost}/api/` }),
@@ -16,7 +16,7 @@ export const authService = createApi({
             })
         }),
         loginuser: builder.mutation({
-            query: (loginbody) => {
+            query: (loginbody) => {              
                 return {
                     url: 'auth/login',
                     method: 'POST',
