@@ -14,6 +14,7 @@ import MovieDetails from './Components/MovieDetails';
 import PRouterRenderAfterLogin from './protected_route/ProtectedRouter';
 import ProtectedRouteNotRenderAfterLogin from './protected_route/ProtectedRouteNotLogin';
 import Subscription from './Components/Subscription';
+import Message from './Components/Message';
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
     <Router>
       <Moviesstate>
         <div className="App">
-         
+          <Message />
           <Routes>
             <Route exact path='/' element={<ProtectedRouteNotRenderAfterLogin Component={Home} />} />
             <Route exact path='/login' element={<ProtectedRouteNotRenderAfterLogin  Component={Signin} />} />

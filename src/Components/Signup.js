@@ -2,14 +2,22 @@ import React, { useEffect, useState } from 'react'
 import backgroundimg from "../Images/net_backcover.jpg";
 import logo from '../Images/Netflix_logo.svg'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux';
-import { useCreateuserMutation } from '../slicers/service/auth/authService';
+import { useDispatch, useSelector } from 'react-redux';
+import { SignUpTunk, clearErrorState } from '../slicers/service/auth/authService';
+import { toast } from 'react-toastify';
+
 
 export default function Signup() {
     const email = useSelector((state) => state.newsletter.email)
     const [isvalid, setIsvalid] = useState({ email: email, password: '', confirm_password: '' })
     const [allfiledrequired, setAllfiledrequired] = useState({status:false,errmsg:''})
+    const msgstate = useSelector(state=>state.mssg)
+    const notify = () => toast.success("Register Success!");
+
+    const state = useSelector(state=>state.auth)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+
     const checkformvaldation = (e) => {
         let id = e.target.id
         let emailclassdata = document.getElementById('email').getAttribute('class')
@@ -83,8 +91,9 @@ export default function Signup() {
     }
     const onchange = (e) => {
         setIsvalid({ ...isvalid, [e.target.name]: e.target.value })
+        dispatch(clearErrorState())
     }
-    const [createuser, createuserinfo] = useCreateuserMutation()
+    // const [createuser, createuserinfo] = useCreateuserMutation()
     const handleSignup = (e) => {
         e.preventDefault()
         const reg = new RegExp(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/)
@@ -101,7 +110,7 @@ export default function Signup() {
                     'email': isvalid.email,
                     'password': isvalid.password
                 }
-                createuser(senddata)
+                dispatch(SignUpTunk(senddata))
             }
 
         }
@@ -109,20 +118,24 @@ export default function Signup() {
             setAllfiledrequired({status:true,errmsg:'All filed required'})
         }
     }
+ 
     useEffect(()=>{
-        if(createuserinfo.isError){
-            setAllfiledrequired({status:true,errmsg:createuserinfo.error.data})
-        }
-        if(createuserinfo.isSuccess){
+        if(!state.error && state.status){            
             navigate('/login')
+            dispatch(clearErrorState())
+            notify()
         }
-        return ()=>{
-            setAllfiledrequired({status:false})
+        else{
+            setAllfiledrequired({status:true,errmsg:state.error})
         }
-    },[createuserinfo])
+
+       
+    },[state])
+    
     return (
         <>
-            <div style={{ backgroundImage: `url(${backgroundimg})` }} className="relative h-[1100px] max-xs:h-[900px] bg-auto bg-no-repeat  max-w-full">
+            <div style={{ backgroundImage: `url(${backgroundimg})` }} className="relative h-[1100px] max-xs:h-[900px] bg-auto bg-no-repeat  max-w-full">  
+                 
                 <div className='bg-black/50 w-full h-full max-xs:bg-black'>
                     <div className='logo pt-5 mx-10 w-40 max-xs:mx-3'><img className='object-cover' src={logo} alt="" srcSet="" /></div>
                     <form action="" className='max-w-[30rem] max-xs:max-w-full max-xs:px-3 mx-auto mt-10 max-xs:mt-5 h-fit max-h-full rounded-sm py-10 max-xs:py-5 text-white bg-black/70'>
@@ -141,8 +154,8 @@ export default function Signup() {
                                 <span id='repasserror' className='text-sm text-[#e87c03] hidden'>Your Password does not Match</span>
                             </div>
                             <div className='flex flex-col'>
-                                <button disabled={createuserinfo.isLoading} type='submit' onClick={handleSignup} className='bg-[#e50914] h-[3.5rem] rounded-md font-bold disabled:cursor-not-allowed'> Sign Up </button>
-                                <span className={`text-[#e87c03] before:content-['*'] ${allfiledrequired.status? 'opacity-100' : 'opacity-0'}`}>{allfiledrequired.status? allfiledrequired.errmsg:null}</span>
+                                <button  type='submit' onClick={handleSignup} className='bg-[#e50914] h-[3.5rem] rounded-md font-bold disabled:cursor-not-allowed'> Sign Up </button>
+                                {allfiledrequired.status && <span className={`text-[#e87c03]`}>{allfiledrequired.errmsg}</span>}
                                 <div className='flex flex-row justify-between items-center'>
                                     <div className='flex flex-row justify-start items-center gap-1 my-1'>
                                         <input className='accent-white' type="checkbox" name="" id="" />

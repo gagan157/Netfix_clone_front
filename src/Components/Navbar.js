@@ -12,15 +12,22 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import { useNavigate } from 'react-router-dom';
-import { useGetuserdetailsQuery } from '../slicers/service/auth/userServices';
+import { useSelector } from 'react-redux';
+// import { useGetuserdetailsQuery } from '../slicers/service/auth/userServices';
+import { useJwt } from "react-jwt";
 
 
 function Navbar(props) {
-  const responseinfo  = useGetuserdetailsQuery({ },{ refetchOnMountOrArgChange: true })
+  // const responseinfo  = useGetuserdetailsQuery({ },{ refetchOnMountOrArgChange: true })
+  const state = useSelector(state=>state.auth)
   const login = sessionStorage.getItem('loginToken')
   const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const token = sessionStorage.getItem('loginToken')
+  const { decodedToken } = useJwt(token);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -33,7 +40,7 @@ function Navbar(props) {
     navigate(0)
   }
  const handleManageProfile = ()=>{
-  navigate(`/profile_update/${responseinfo.data.data.userp_id}`)
+  navigate(`/profile_update/${state.userdata._id}`)
  }
   
  

@@ -1,32 +1,34 @@
 import React,{memo, useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
-import { useGetuserdetailsQuery } from '../slicers/service/auth/userServices'
+import { useJwt } from 'react-jwt'
+import { useDispatch, useSelector } from 'react-redux'
+import { Navigate, useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { getUserThunk } from '../slicers/service/auth/authService'
 
 function ProtectedRouter(props) {
-    const responseinfo  = useGetuserdetailsQuery({ },{ refetchOnMountOrArgChange: true })
     const navigate = useNavigate()
     const { Component  } = props 
-    const login = sessionStorage.getItem('loginToken')
-    // console.log(responseinfo)
-    useEffect(() => {
-        console.log('useeefect working')
-        if (responseinfo.data) {            
-            if (responseinfo.data.errormsg) {               
-                if (responseinfo.data.errormsg.name === 'TokenExpiredError') {
-                    sessionStorage.removeItem('loginToken')
-                    navigate('/login',{state:{'logoutmsg':responseinfo.data.errormsg}})
-                    navigate(0)
-                }
+    const dispatch = useDispatch()
+    const token = sessionStorage.getItem('loginToken')    
+    const {isExpired} = useJwt(token)
+
+    useEffect(()=>{
+        dispatch(getUserThunk(token))
+    },[])
+
+    useEffect(() => {            
+            if(isExpired){
+                sessionStorage.removeItem('loginToken')
+                navigate('/login',{state:{'logoutmsg':"login Expire"}})
+                navigate(0)
             }
-        }
-    })
-    
-    return (
-        <>
-         {login? <Component /> : <Navigate to='/login' />}
+        },[isExpired])
         
-        </>
+        return (
+            <>          
+         {token? <Component />: <Navigate to='/login' /> }
+        
+             </>
     )
 }
 
