@@ -20,9 +20,9 @@ export default function Home() {
                 <div className='w-full h-full bg-gradient-to-t from-black/90 via-transparent to-black/90 bg-black/40'>
                     <Navbar />
                     <div className='flex flex-col gap-5'>
-                        <div className='text-white px-10 lg:max-w-3xl sm:max-w-xl max-xs:w-full mx-auto flex flex-col items-center max-h-full gap-5 mt-[155px] max-xs:mt-[90px]'>
-                            <h1 className='lg:text-[4rem] sm:text-[3rem] max-xs:text-5xl font-bold text-center leading-tight'>Unlimited movies, TV shows and more.</h1>
-                            <h1 className='lg:text-3xl sm:text-2xl max-xs:text-xl'>Watch anywhere. Cancel anytime.</h1>
+                        <div className='text-white px-10 lg:max-w-3xl sm:max-w-xl max-xs:w-full mx-auto flex flex-col items-center max-h-full gap-5 mt-[155px] max-xs:mt-[90px] max-xs:px-4'>
+                            <h1 className='lg:text-[4rem] sm:text-[3rem] max-xs:text-5xl  font-bold text-center leading-tight'>Unlimited movies, TV shows and more.</h1>
+                            <h1 className='lg:text-3xl sm:text-2xl max-xs:text-xl text-center'>Watch anywhere. Cancel anytime.</h1>
                         </div>
                         <div className='w-full'>
                             <Newletter />

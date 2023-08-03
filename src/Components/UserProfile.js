@@ -20,9 +20,9 @@ export const Profile = ({data})=>{
     return (<>
         <Navbar islogin={true} />
         <div className='flex justify-center items-center h-full w-full'>
-            <div className='flex flex-col justify-center items-center gap-12'>
-                <h1 className='text-4xl tracking-widest font-semibold'>Who's Watching?</h1>
-                <div className='flex flex-row justify-center items-center w-full h-full gap-10'>
+            <div className='flex flex-col justify-center items-center gap-10 md:gap-12 max-xs:mt-5 md:mt-0'>
+                <h1 className='text-4xl tracking-widest font-semibold text-center'>Who's Watching?</h1>
+                <div className='flex flex-row justify-center items-center w-full h-full gap-5 md:gap-10 flex-wrap px-4'>
                     <div className='flex flex-col w-[6rem] h-[7rem] justify-center items-center gap-1'>
                         <Link to='/movies'><div className='cursor-pointer transition-all hover:border-2 hover:border-white'>
                             <img className='object-cover' src={avatar} alt="" />
@@ -62,7 +62,7 @@ function UserProfile() {
     
     useEffect(()=>{         
         if(Object.keys(state.userdata).length > 0){     
-            console.log(state)
+            
             if(!state.userdata.first_name){
                 navigate(`/profile_update/${state.userdata._id}`)   
             }       

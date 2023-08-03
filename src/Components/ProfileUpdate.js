@@ -61,10 +61,10 @@ function ProfileUpdate() {
     
     return (
         <>
-            <div className='w-full min-h-screen max-h-full bg-black text-white'>
+            <div className='w-full bg-black text-white h-[100vh]'>
                 <Navbar />                         
-                <div className='py-36 max-w-6xl mx-auto h-full px-3'>
-                    <form className='flex flex-col gap-10' onSubmit={(e)=>{handleupdate(e)}}>
+                <div className='relative pt-24 pb-5 max-w-6xl mx-auto px-3 h-full'>
+                    <form className='flex flex-col gap-5 justify-around h-full' onSubmit={(e)=>{handleupdate(e)}}>
                         <div className='w-full h-16 rounded-md relative'>
                             <input required onChange={handleonChange} className="w-full h-full border-b-2 border-gray-300 text-white rounded-br-sm rounded-bl-sm focus:rounded-md focus:border-2 transition-all focus:border-[#e87c03] bg-transparent outline-none p-5 placeholder:focus:-translate-y-8 placeholder:transition-all focus:placeholder:invisible valid:border-2 valid:border-[#e87c03] valid:rounded-md peer" type="text" value={formdata.first_name} name="first_name" id="first_name" placeholder='First Name' />
                             <label htmlFor="first_name" className='absolute top-0 left-0 my-auto -translate-y-3 opacity-0 invisible bg-black w-fit translate-x-5   peer-focus:opacity-100 peer-focus:visible peer-focus:transition-all peer-valid:opacity-100 peer-valid:visible'>First Name</label>

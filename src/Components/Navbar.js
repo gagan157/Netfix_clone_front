@@ -45,7 +45,7 @@ function Navbar(props) {
   
  
   return (
-    <div className={`flex justify-between items-center px-14 pt-5 max-xs:px-5 ${login ? 'absolute top-0 z-10 w-full' : ''}`}>
+    <div className={`flex justify-between items-center px-14 pt-5 max-xs:px-4 ${login ? 'absolute top-0 z-10 w-full' : ''}`}>
       <img className='w-40 max-xs:w-28' src={logo} alt="" />
       {login ?
         <div className={`w-12 relative group ${props.islogin ? 'hidden' : ''}`}>
@@ -129,9 +129,9 @@ function Navbar(props) {
         </div>
 
 
-        : <ul className='text-white flex gap-5 justify-center items-center capitalize'>
-          <li className='border-2 py-1 px-4 rounded-sm max-xs:px-3'>english</li>
-          <li className='bg-red-600 cursor-pointer px-4 py-[0.35rem] max-xs:px-3 text-base rounded-sm'><Link to='/login'>sign in</Link></li>
+        : <ul className='text-white flex gap-5 max-xs:gap-2 justify-center items-center capitalize'>
+            <li className='border-2 py-1 px-4 rounded-sm max-xs:px-2'>english</li>
+            <li className='bg-red-600 cursor-pointer px-4 py-[0.35rem] max-xs:px-3 text-base rounded-sm'><Link to='/login'>sign in</Link></li>
         </ul>}
     </div>
   )

@@ -52,7 +52,7 @@ export default function Questioncard() {
 
 
             <h1 className='text-white lg:text-5xl font-semibold text-center max-xs:text-3xl sm:text-4xl'>Frequently Asked Questions</h1>
-            <div className='cardbody w-full flex flex-col gap-2'>
+            <div className='cardbody w-full flex flex-col gap-2 px-2'>
                 {/* 1 */}
                 <div className='carditem  flex flex-col gap-1'>
                     <div onClick={() => { handleopenquestion('card1') }} id='1' className='question bg-[#303030] flex justify-between items-center py-4 cursor-pointer select-none px-6'>

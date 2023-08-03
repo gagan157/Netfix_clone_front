@@ -7,10 +7,11 @@ function MovieTrailerinfo(props) {
   const [onerdmtrailerid, setOnerdmtrailerid] = useState('')
   const [error, setError] = useState(false)
   const { movieinfo, slideshow, handleClose } = props
+  const [trailerWidth,setTrailerWidth] = useState({width:'300',height:'400'})
 
   const opts = {
-    height: slideshow?'850':'390',
-    width: slideshow?'1520':'690',
+    height: slideshow?'850':trailerWidth.height,
+    width: slideshow?'1520':trailerWidth.width,
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
@@ -55,10 +56,19 @@ function MovieTrailerinfo(props) {
 
   useEffect(() => {
     getonemovieIDlist(trailerid)
+    
   }, [trailerid])
 
   useEffect(() => {
     getmovietrailerIdlist()
+    
+    
+    if(window.innerWidth < 769 && window.innerWidth > 426){
+      setTrailerWidth({...trailerWidth, width:"500",height:"300"})
+    }
+    if(window.innerWidth > 769){
+      setTrailerWidth({...trailerWidth, width:"690", height:"390"})
+    }
   }, [])
   return (
     <>

@@ -43,7 +43,7 @@ const MovieDetails = memo(() =>{
     //   truncate()  
     // }
     data && truncate()
-    console.log(data)
+    
   }, [data])
   return (
     <>

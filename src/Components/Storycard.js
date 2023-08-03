@@ -21,7 +21,7 @@ export default function Storycard(props) {
                     </div>
                 </div>
             </div> */}
-            <div className='h-full max-w-6xl mx-auto p-10 '>
+            <div className='h-full max-w-6xl mx-auto p-10 max-xs:px-5'>
                 <div className={`flex lg:flex-row sm:flex-col sm:text-center max-xs:flex-col
                  max-xs:text-center lg:text-left justify-center items-center w-full h-full lg:gap-14 sm:gap10 ${reverse}`}>
                     <div className='textcard'>
