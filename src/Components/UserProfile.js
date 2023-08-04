@@ -9,6 +9,7 @@ import { useEffect } from 'react'
 // import { use } from '../../../netflix_backend/routes/auth_router'
 import { getUserThunk } from '../slicers/service/auth/authService';
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify';
 
 
 export const Profile = ({data})=>{
@@ -54,6 +55,10 @@ export const Profile = ({data})=>{
 function UserProfile() {
     const navigate = useNavigate()
     const state = useSelector(state=>state.auth)
+    const notify = () => toast.info("Please Update Your Profile",{
+        hideProgressBar: true,
+        autoClose: 3000,
+    });
     const dispatch = useDispatch()
 
     // useEffect(()=>{
@@ -65,6 +70,7 @@ function UserProfile() {
             
             if(!state.userdata.first_name){
                 navigate(`/profile_update/${state.userdata._id}`)   
+                notify();
             }       
         }
     },[state.userdata])

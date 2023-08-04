@@ -14,12 +14,14 @@ function ProfileUpdate() {
     const {id} = useParams() 
     const navigate = useNavigate()
     const notify = () => toast.success("Update Success!");
+    const [buttonState,setButtonState] = useState(false)
 
     const handlecheck = (e) => {
         setGender({...gender,Male:false,Female:false,Other:false, [e.target.value]: e.target.checked, value: e.target.value})
     }
+   
     const handleonChange = (e) => {
-        setFormdata({ ...formdata, [e.target.name]: e.target.value })
+        setFormdata({ ...formdata, [e.target.name]: e.target.value })     
     }
     const handleupdate = (e) => {
         e.preventDefault();
@@ -100,7 +102,7 @@ function ProfileUpdate() {
                             </div>
                         </div>
 
-                        <button type="submit" className='bg-red-500 w-full h-10 tracking-widest rounded-md font-semibold text-lg uppercase hover:bg-red-600 text-white hover:-translate-y-1 transition-all duration-500'>Update</button>
+                        <button type="submit" disabled={buttonState} className='bg-red-500 w-full h-10 tracking-widest rounded-md font-semibold text-lg uppercase hover:bg-red-600 text-white hover:-translate-y-1 transition-all duration-500 disabled:hover:-translate-y-0 disabled:bg-slate-300 disabled:text-black/25 disabled:cursor-not-allowed'>Update</button>
 
                     </form>
                 </div>

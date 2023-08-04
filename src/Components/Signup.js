@@ -11,7 +11,6 @@ export default function Signup() {
     const email = useSelector((state) => state.newsletter.email)
     const [isvalid, setIsvalid] = useState({ email: email, password: '', confirm_password: '' })
     const [allfiledrequired, setAllfiledrequired] = useState({status:false,errmsg:''})
-    const msgstate = useSelector(state=>state.mssg)
     const notify = () => toast.success("Register Success!");
 
     const state = useSelector(state=>state.auth)

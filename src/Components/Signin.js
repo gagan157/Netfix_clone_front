@@ -4,10 +4,11 @@ import logo from '../Images/Netflix_logo.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom'
-import { useNavigate , useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserThunk, loginuserTunk } from '../slicers/service/auth/authService';
 import { clearErrorState } from '../slicers/service/auth/authService';
+
 
 export default function Signin() {
   
@@ -16,10 +17,10 @@ export default function Signin() {
     const [isvalid, setIsvalid] = useState({ email: '', password: '' })
     const [error,setError] = useState({singlemsg:{status:false,msg:""},allmsg:{emailerror:{status:false,msg:''},passerror:{status:false,msg:''}}})
     const navigate = useNavigate()
-    const location = useLocation()
     const inpEmail = useRef();
     const inpPassword = useRef();
 
+    
 
     const checkformvaldation = (e) => {
         let id = e.target.id
@@ -138,6 +139,8 @@ export default function Signin() {
 
     },[state])
 
+    
+
 
     return (
         <>
@@ -203,10 +206,7 @@ export default function Signin() {
                         </div>
                     </footer>
                 </div>
-            </div>
-            {location.state? <div className='absolute bottom-0 left-[40%] right-[40%] bg-white rounded-full p-3 font-semibold shadow-lg shadow-black text-center'>
-                Session Timeout Please login again
-            </div> :null }
+            </div>                  
         </>
 
     )
