@@ -19,8 +19,7 @@ export const loginuserTunk = createAsyncThunk(
     async (thunkAPI,{rejectWithValue}) => { 
         try{
             const res = await fetch(`https://${BackendHost}/api/auth/login`,{
-                method : 'POST',
-                credentials: "include",               
+                method : 'POST',                       
                 headers: {
                     "Access-Control-Allow-Origin":"*",
                     "Content-Type": "application/json",            
