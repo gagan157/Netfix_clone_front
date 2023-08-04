@@ -18,7 +18,7 @@ export const loginuserTunk = createAsyncThunk(
     'auth/login',
     async (thunkAPI,{rejectWithValue}) => { 
         try{
-            const res = await fetch(`/${BackendHost}/api/auth/login`,{
+            const res = await fetch(`https://${BackendHost}/api/auth/login`,{
                 method : 'POST',
                 mode: "cors",
                 headers: {
@@ -40,7 +40,7 @@ export const SignUpTunk = createAsyncThunk(
     'auth/signup',
     async (thunkAPI,{rejectWithValue}) => { 
         try{
-            const res = await fetch(`/${BackendHost}/api/auth/createusers`,{
+            const res = await fetch(`https://${BackendHost}/api/auth/createusers`,{
                 method : 'POST',
                 mode: "cors",
                 headers: {
@@ -63,7 +63,7 @@ export const getUserThunk = createAsyncThunk(
     'user/details',
     async (thunkApi,{rejectWithValue})=>{
             try{
-            let res = await fetch(`/${BackendHost}/api/user/userdetails`,{
+            let res = await fetch(`https://${BackendHost}/api/user/userdetails`,{
                 method : 'GET',
                 mode: "cors",
                 headers: {
@@ -88,7 +88,7 @@ export const userProfileUpdate = createAsyncThunk(
     'user/profileUpdate',
     async (thunkAPI,{rejectWithValue}) =>{        
         try{
-            let res = await fetch(`/${BackendHost}/api/user/profile_update/${thunkAPI.id}`,{
+            let res = await fetch(`https://${BackendHost}/api/user/profile_update/${thunkAPI.id}`,{
                 method : 'PUT',
                 headers : {
                     "Content-Type": "application/json",                        
