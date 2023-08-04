@@ -19,9 +19,9 @@ export const loginuserTunk = createAsyncThunk(
     async (thunkAPI,{rejectWithValue}) => { 
         try{
             const res = await fetch(`https://${BackendHost}/api/auth/login`,{
-                method : 'POST',
-                mode: "cors",
+                method : 'POST',               
                 headers: {
+                    
                     "Content-Type": "application/json",            
                 },
                 body : JSON.stringify(thunkAPI)  
@@ -41,8 +41,7 @@ export const SignUpTunk = createAsyncThunk(
     async (thunkAPI,{rejectWithValue}) => { 
         try{
             const res = await fetch(`https://${BackendHost}/api/auth/createusers`,{
-                method : 'POST',
-                mode: "cors",
+                method : 'POST',               
                 headers: {
                     "Content-Type": "application/json",            
                 },
@@ -64,8 +63,7 @@ export const getUserThunk = createAsyncThunk(
     async (thunkApi,{rejectWithValue})=>{
             try{
             let res = await fetch(`https://${BackendHost}/api/user/userdetails`,{
-                method : 'GET',
-                mode: "cors",
+                method : 'GET',                
                 headers: {
                     "Content-Type": "application/json",                        
                     'Authorization': `Bearer ${JSON.parse(thunkApi)}`      
